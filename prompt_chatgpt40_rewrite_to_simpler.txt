@@ -1,0 +1,40 @@
+I would like to rewrite a Python 3 program that extracts meta-data from PNG
+files and creates a HTML file with a table. I will provide you with the original
+program. 
+
+Currently, the program creates a table with the artists' names on one side for
+the rows and the prompts for the columns. I would like to change this so we keep
+the artists' names in the rows, but then we just put the thumbnails in the row
+after that, without the prompts in the columns. 
+
+The result in the HTML file should look something like this:
+
+"""
+Stable Diffusion Benchmark <CURRENT FOLDER>
+Model: <MODEL NAME>
+
+----------+------------+
+          |            |
+<NAME A>  |  Thumb A1  |
+          |            |
+----------+-------------------------+------------+
+          |            |            |            |
+<NAME B>  |  Thumb B1  |  Thumb B2  |  Thumb B3  |
+          |            |            |            |
+----------+------------+------------+------------+
+          |            |            |
+<NAME C>  |  Thumb C1  |  Thumb C2  |
+          |            |            |
+----------+------------+------------+
+"""
+
+We will, however, provide the following information:
+- prompt
+- negative prompt
+- file name
+
+The way we will do this is if the user clicks on one of the thumbnails, a window
+will pop up. This will allow the user to mark and copy the information he needs. 
+
+Are you ready for the original program?
+

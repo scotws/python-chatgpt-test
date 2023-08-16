@@ -1,0 +1,78 @@
+I would like you to help me create a Python 3 program to extract meta-data from
+PNG image files, and then create a PDF file that lists that metadata together
+with a thumbnail. 
+
+The image files are in a folder. We will extract the metadata with the help of
+an external program that is part of the ImageMagick suite of programs. The
+command line instruction for this is: 
+
+"""
+identify -format '%[parameters]' ./<FILE NAME>
+"""
+
+The return value will look something like this:
+
+"""
+art by (Alphonse Mucha:1.3)
+a cute female elf reading a book in a magic library
+Negative prompt: nude, nsfw
+Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 3169807609, Size: 1024x1024, Model hash: 0f1b80cfe8, Model: dreamshaperXL10_alpha2Xl10, Version: v1.5.1
+
+"""
+
+We need to extract four things from this: 
+        - the artist's name at the beginning, in this example "Alphonse Mucha";
+        - the "prompt" at the beginning, in this example "a cute female elf reading a book in a magic library";
+        - the "negative prompt" that follows, in this example "nude, nsfw"; 
+        - the "model", in this example "dreamshaperXL10_alpha2Xl10".
+
+Note that in many cases, there will be many pictures from the same artist. Also,
+many pictures will have the same prompt. However, all pictures should have the
+exact same negative prompt.
+
+You will also need today's date in the ISO format.
+
+When the program has extracted this information, we would like to output it in a
+PDF in a table that has the following rough structure: 
+
+"""
+Stable Diffusion Benchmark <TODAY'S DATE>
+Model: <MODEL NAME>
+
+Artist    | <PROMPT 1> | <PROMPT 2> | <PROMPT 3> |
+----------+------------+------------+------------+
+          |            |            |            |
+<NAME A>  |  Thumb A1  |  Thumb A2  |  Thumb A3  |
+          |            |            |            |
+----------+-------------------------+------------+
+          |            |            |            |
+<NAME B>  |  Thumb B1  |  Thumb B2  |  Thumb B3  |
+          |            |            |            |
+----------+------------+------------+------------+
+          |            |            |            |
+<NAME C>  |  Thumb C1  |  Thumb C2  |  Thumb C3  |
+          |            |            |            |
+----------+------------+------------+------------+
+
+Negative prompt: <NEGATIVE PROMPT>
+"""
+
+In this example, there are pictures from three different artists with three
+different prompts. 
+
+The program will begin by asking the user for the location of the folder. If the
+user does not give a location, use the current directory. 
+
+Next, make sure we have read and write permission for the current folder. Abort
+with an error message if this is not the case.
+
+Next, see if the program "identify" is installed an executable. A board with an
+error message if this is not the case.
+
+Then extract the meta-data from all PNG files you can find in the folder as
+described above. Ignore all other files. If there are no PNG files in the
+folder, a board with an error message.
+
+Finally, create the PDF as described above and save that to the folder with the
+pictures.
+
